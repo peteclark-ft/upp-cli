@@ -22,7 +22,7 @@ Show health for all environments (without naming the failing healthchecks).
 upp-cli
 ```
 
-Show health but filter environments.
+Show health but filter environments/categories.
 
 ```
 upp-cli -f dyn
@@ -37,19 +37,19 @@ upp-cli -l
 Acknowledge a healthcheck on dynpub.
 
 ```
-upp-cli ack dyn <health-check> -m "Acked PDC"
+upp-cli ack ^prod.* system-healthcheck-.* -m "Not able to upgrade CoreOS PDC"
 ```
 
 Remove an acknowledgement from dynpub.
 
 ```
-upp-cli ack dyn <health-check> -d
+upp-cli ack ^prod.* system-healthcheck-.* -d
 ```
 
 Open your browser with the aggregate healthcheck page(s) for provided environments.
 
 ```
-upp-cli open <env>"
+upp-cli open ^prod"
 ```
 
 All options accept Regex - but be careful as this will process the command on everything that matches.
