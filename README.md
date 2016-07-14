@@ -34,13 +34,13 @@ Show health with failing healthchecks/acknowledged.
 upp-cli health -l
 ```
 
-Acknowledge a healthcheck on dynpub.
+Acknowledge a healthcheck. (In this case acknowledge all system-healthchecks on all prod environments).
 
 ```
 upp-cli ack ^prod.* system-healthcheck-.* -m "Not able to upgrade CoreOS PDC"
 ```
 
-Remove an acknowledgement from dynpub.
+Remove an acknowledgement.
 
 ```
 upp-cli ack ^prod.* system-healthcheck-.* -d
