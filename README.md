@@ -19,19 +19,19 @@ make
 Show health for all environments (without naming the failing healthchecks).
 
 ```
-upp-cli
+upp-cli health
 ```
 
 Show health but filter environments/categories.
 
 ```
-upp-cli -f dyn
+upp-cli health -f dyn
 ```
 
 Show health with failing healthchecks/acknowledged.
 
 ```
-upp-cli -l
+upp-cli health -l
 ```
 
 Acknowledge a healthcheck on dynpub.
