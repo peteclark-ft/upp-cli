@@ -6,7 +6,7 @@ let exec = require('child_process').exec;
 
 function ack(environment, service, message){
   console.log('Adding acknowledgement for \"'+service.name+'\" in environment \"'+environment.name+'\"');
-  exec("ssh -t " + environment.tunnel + " 'etcdctl set /ft/healthcheck/" + service.name + "/ack' " + message);
+  exec("ssh -t " + environment.tunnel + " 'etcdctl set /ft/healthcheck/" + service.name + "/ack \""+message+"\"' ");
 }
 
 function deleteAck(environment, service){
