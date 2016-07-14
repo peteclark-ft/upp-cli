@@ -2,9 +2,10 @@
 
 let Promise = require('bluebird');
 let healthchecks = require('../http/healthchecks');
+let envs = require('../util/environments');
 let formatting = require('./formatting');
 
-function processEnvironments(environments){
+function processEnvironments(environments, longFormat){
   var promises = [];
   environments.map(function(env){
     promises.push(healthchecks.health(env));
@@ -22,7 +23,7 @@ function processEnvironments(environments){
         lastCategory = a.environment.category;
       }
 
-      if (module.exports.long){
+      if (longFormat){
         formatting.long(a);
         return;
       }
@@ -34,7 +35,25 @@ function processEnvironments(environments){
   });
 }
 
-module.exports = {
-  health: processEnvironments,
-  long: false
+exports.command = 'health'
+exports.describe = 'Show healthcheck information.'
+
+exports.builder = {
+  long: {
+    alias: 'l',
+    describe: 'Show the failing healthchecks alongside the environments.',
+    'default': 'false',
+    type: 'boolean'
+  },
+  filter: {
+    alias: 'f',
+    describe: 'Filter the environments.',
+    type: 'string'
+  }
+};
+
+exports.handler = function (argv){
+  envs.filter(argv.filter).then(result => {
+    processEnvironments(result, argv.long);
+  });
 }
