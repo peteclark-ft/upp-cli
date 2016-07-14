@@ -76,6 +76,8 @@ Category is useful for grouping environments logically and the importance value 
 
 ## Assumptions
 
+You must have node pre-installed.
+
 This is currently tested on OS X only.
 
 In order to ack services, the process will ssh to the selected environment using default settings - please make sure this is possible.
